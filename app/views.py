@@ -366,7 +366,7 @@ def gradefail(request):
         emp = models.StuInfo.objects.filter(stucollege=college)
         if emp.count() == 0:
             return render(request, 'gradefail.html', {'err': '该学院下无学生,请确保学院名称输入正确！！！'})
-        str += " amd stucollege="+"'"+college+"'"
+        str += " and stucollege="+"'"+college+"'"
     if id != "":
         emp = models.StuInfo.objects.filter(id=id)
         if emp.count() == 0:
@@ -459,7 +459,7 @@ def addgrade(request):
         sc.scno = models.Course.objects.filter(cno=info[1]).first()
         sc.grade = int(info[2])
         sc.save()  # 保存数据
-        return render(request, 'addgrade.html', {'success': '学生信息添加成功！！！', "info": mid})
+        return render(request, 'addgrade.html', {'success': '学生成绩添加成功！！！', "info": mid})
 
 
 def updategrade(request):
