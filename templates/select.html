@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>查询学生信息</title>
+   <style>
+   body{
+       background: white;
+       text-align: center;
+  }
+   h1{
+       font-size: 30px;
+       padding-top: 20px;
+  }
+   label,input{
+       font-size: 20px;
+      /* border-top: 20px;             padding-top: 20px;内边距*/
+       margin-top: 15px;/*外边距*/
+       width: 180px;   /*输入框长度*/
+
+  }
+   button{         /*控制按钮位置大小及间距*/
+       font-size: 20px;
+       margin-left: 40px;
+       margin-right: -20px;
+       /*border-radius: 10px;*/
+       color: black;
+  }
+
+</style>
+</head>
+<body>
+<div>
+<h1>查询学生信息</h1>
+<form action="/select/" method="post">
+  {% csrf_token %}
+   <label style="margin-left: 100px; ">请根据学生学号进行查询:</label>
+   <input name="id" placeholder="请输入学生学号" required>
+   <button type="submit">查询</button>
+</form>
+<br>
+<a href="/login">
+<button style="background-color: transparent;border-style: hidden;color: red">
+  {% if error %}
+      {{ error }}
+  {% endif %}<br>
+</button>
+</a>
+<label style="color: red">
+  {% if err %}
+      {{ err }}
+  {% endif %}
+  {% if success %}
+      {{ success }}
+  {% endif %}<br>
+</label>
+</div>
+<div>
+   <h1 style="margin-top: -20px">查询结果如下</h1>
+   <div style="font-size: 30px; margin-left: 700px; width:400px; text-align: left">
+       <p> 学生学号:{{ id }}</p>
+       <p>学生姓名:{{ stuname }}</p>
+       <p>学生电话:{{ stuphone }}</p>
+       <p>学生地址:{{ stuaddress }}</p>
+       <p>学生院系:{{ stucollege }}</p>
+       <p>学生专业:{{ stumajor }}</p>
+   </div>
+<p>
+<a href="/bottom">
+   <button>回到主菜单</button>
+</a>
+</p>
+</div>
+</body>
+</html>

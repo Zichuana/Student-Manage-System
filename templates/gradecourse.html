@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看课程成绩</title>
+    <style>
+        body {
+            background: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            padding-top: 30px;
+        }
+
+        label, input {
+            font-size: 20px;
+            /* border-top: 20px;             padding-top: 20px;内边距*/
+            margin-top: 15px; /*外边距*/
+            width: 180px; /*输入框长度*/
+        }
+
+        button { /*控制按钮位置大小及间距*/
+            font-size: 18px;
+            margin-left: 50px;
+            margin-right: -20px;
+            /*border-radius: 10px;*/
+            color: black;
+        }
+
+        div {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>根据课程名称查询所有学生成绩</h1><br>
+<form action="/gradecourse/" method="post">
+    {% csrf_token %}
+    <label>课程名称:</label>
+    <input type="text" name="course" placeholder="请输入课程名">
+    <button type="submit" value="submit">确定</button>
+</form>
+<br>
+<a href="/selgrade">
+    <button>返回</button>
+</a>
+<div style="color: red"><br>
+    {% if err %}
+        {{ err }}
+    {% endif %}
+</div>
+<div>
+    <h1>{{ course }}课程成绩一览</h1>
+    <table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+        <tr>
+            <th>学生学号</th>
+            <th>学生姓名</th>
+            <th>所在院</th>
+            <th>专业</th>
+            <th>成绩</th>
+        </tr>
+        {% for s in info %}
+            <tr>
+                <td> {{ s.id }}  </td>
+                <td> {{ s.stuname }}  </td>
+                <td> {{ s.stucollege }}  </td>
+                <td> {{ s.stumajor }}  </td>
+                <td> {{ s.grade }}  </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <div>
+        <br><br>
+        <form action="/grademid/" method="post">
+            {% csrf_token %}
+            <input type="text" hidden="hidden" name="course" value="{{ course }}">
+            <button type="submit" value="submit">高级查询</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

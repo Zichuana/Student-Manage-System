@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成绩一览</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        label {
+            align: center;
+            font-size: 30px;
+        }
+
+        label2 {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<h1>学生成绩一览</h1>
+<table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+    <tr>
+        <th id="id">学生学号</th>
+        <th>学生姓名</th>
+        <th>课程编号</th>
+        <th>课程名</th>
+        <th>课程学分</th>
+        <th>课程分数</th>
+        <th>学生专业</th>
+    </tr>
+    {% for s in info %}
+        <tr>
+            <td id="id"> {{ s.id }}  </td>
+            <td> {{ s.stuname }}  </td>
+            <td> {{ s.cno }}  </td>
+            <td> {{ s.cname }}  </td>
+            <td> {{ s.ccredit }}  </td>
+            <td> {{ s.grade }}  </td>
+            <td> {{ s.stumajor }}  </td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="/selgrade">
+    <button>返回</button>
+</a>
+</body>
+</html>

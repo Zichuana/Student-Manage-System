@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>添加学生信息</title>
+<style>
+   body{
+       background: white;
+       text-align: center;
+  }
+   h1{
+       font-size: 30px;
+       padding-top: 30px;
+  }
+   label,input{
+       font-size: 20px;
+      /* border-top: 20px;             padding-top: 20px;内边距*/
+       margin-top: 15px;/*外边距*/
+       width: 180px;   /*输入框长度*/
+  }
+   button{         /*控制按钮位置大小及间距*/
+       font-size: 25px;
+       margin-left: 60px;
+       margin-right: -20px;
+       /*border-radius: 10px;*/
+       color: black;
+  }
+</style>
+</head>
+<body>
+<h1>请在下列信息栏填入学生的基本信息</h1><br>
+<div>
+<form id="StuInfo" action="/add/" method="post">
+  {% csrf_token %}
+   <label>学生学号:</label>
+   <input type="text"name="id"required autofocus><br>
+   <label>学生姓名:</label>
+   <input type="text"name="stuname"required autofocus><br>
+   <label>学生电话:</label>
+   <input type="text"name="stuphone"required autofocus><br>
+   <label>学生地址:</label>
+   <input type="text"name="stuaddress"required autofocus><br>
+   <label>学生院系:</label>
+   <input type="text"name="stucollege"required autofocus><br>
+   <label>学生专业:</label>
+   <input type="text"name="stumajor"required autofocus><br>
+</form>
+<p style="font-size: 20px; color: red; padding-left: 60px">
+      {% if err %}
+          {{ err }}
+      {% endif %}
+</p>
+<p style="padding-left: 90px;font-size: 20px">
+      {% if success %}
+          {{ success }}
+      {% endif %}
+</p>
+</div>
+<div>
+   </p>
+   <button type="reset" form="StuInfo">清空</button>
+   <button type="submit" form="StuInfo">提交</button><br><br>
+   <a href="/bottom">
+       <button style="width: 180px">返回主页面</button>
+   </a>
+   </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>添加学生成绩</title>
+   <style>
+       body{
+           text-align: center;
+      }
+       label{
+           align: center;
+           font-size: 30px;
+      }
+       label2{
+           font-size: 25px;
+      }
+   </style>
+</head>
+<div>
+<h1>科目预览</h1>
+<table border="1" align="center"style="border-collapse: collapse; width: 1000px">
+   <tr>
+<th id="id">课程编号</th>
+<th>课程名称</th>
+<th>先修课程</th>
+<th>学分</th>
+   </tr>
+  {% for s in info %}
+<tr>
+<td id="id"> {{ s.cno }}  </td>
+<td> {{ s.cname }}  </td>
+<td> {{ s.cpno }}  </td>
+<td> {{ s.ccredit }}  </td>
+</tr>
+  {% endfor %}
+</table>
+    </div>
+<form action="/addgrade/" method="post">
+    <br><br \>
+    {% csrf_token %}
+    <label style="font-size: 20px">学生学号：</label>
+    <input type="text" name="sno" placeholder="输入学生学号" >
+    <br>
+    <label style="font-size: 20px">课程编号：</label>
+    <input type="text" name="cno" placeholder="输入课程编号" >
+    <br><br \>
+    <label style="font-size: 20px">成绩：</label>
+    <input type="text" name="grade" placeholder="输入学生成绩" >
+    <br><br \>
+    <button type="submit" value="submit">确定添加</button>
+</form>
+<p style="font-size: 20px; color: red; padding-left: 60px">
+      {% if err %}
+          {{ err }}
+      {% endif %}
+</p>
+<p style="padding-left: 90px;font-size: 20px">
+      {% if success %}
+          {{ success }}
+      {% endif %}
+</p>
+<br>
+<a href="/selgrade">
+   <button>返回</button>
+</a>
+</body>
+</html>

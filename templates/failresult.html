@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>挂科学生信息</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        label {
+            align: center;
+            font-size: 30px;
+        }
+
+        label2 {
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<h1>挂科学生信息一览</h1>
+<table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+    <tr>
+        <th id="id">学生学号</th>
+        <th>学生姓名</th>
+        <th>专业</th>
+        <th>学院</th>
+        <th>课程</th>
+        <th>分数</th>
+    </tr>
+    {% for s in info %}
+        <tr>
+            <td id="id"> {{ s.id }}  </td>
+            <td> {{ s.stuname }}  </td>
+            <td> {{ s.major }}  </td>
+            <td> {{ s.college }}  </td>
+            <td> {{ s.course }}  </td>
+            <td> {{ s.grade }}  </td>
+        </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="/mid">
+    <button>返回</button>
+</a>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>学生信息一览</title>
+   <style>
+       body{
+           text-align: center;
+      }
+       label{
+           align: center;
+           font-size: 30px;
+      }
+       label2{
+           font-size: 25px;
+      }
+   </style>
+</head>
+<body>
+<h1>学生信息一览</h1>
+<table border="1" align="center"style="border-collapse: collapse; width: 1000px">
+   <tr>
+<th id="id">学生学号</th>
+<th>学生姓名</th>
+<th>学生电话</th>
+<th>学生地址</th>
+<th>学生院系</th>
+<th>学生专业</th>
+   </tr>
+  {% for s in info %}
+<tr>
+<td id="id"> {{ s.id }}  </td>
+<td> {{ s.stuname }}  </td>
+<td> {{ s.stuphone }}  </td>
+<td> {{ s.stuaddress }}  </td>
+<td> {{ s.stucollege }}  </td>
+<td> {{ s.stumajor }}  </td>
+</tr>
+  {% endfor %}
+</table>
+<br>
+<a href="/bottom">
+   <button>返回</button>
+</a>
+</body>
+</html>

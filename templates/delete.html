@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>删除学生信息</title>
+<style>
+   body{
+       background: white;
+       text-align: center;
+  }
+   h1{
+       font-size: 30px;
+       padding-top: 30px;
+  }
+   label,input{
+       font-size: 20px;
+      /* border-top: 20px;             padding-top: 20px;内边距*/
+       margin-top: 15px;/*外边距*/
+       width: 180px;   /*输入框长度*/
+  }
+   button{         /*控制按钮位置大小及间距*/
+       font-size: 18px;
+       margin-left: 50px;
+       margin-right: -20px;
+       /*border-radius: 10px;*/
+       color: black;
+  }
+   div{
+       font-size: 20px;
+  }
+</style>
+</head>
+<body>
+<h1>请根据学生学号进行删除信息</h1><br>
+<form action="/delete/" method="post">
+  {% csrf_token %}
+<label>学生学号:</label>
+<input type="text" name="id" placeholder="请输入学号">
+<button type="submit" value="submit">确定</button>
+</form>
+<br>
+<a href="/bottom">
+   <button>回到主界面</button>
+</a>
+<div style="color: red"><br>
+{% if err %}
+{{ err }}
+{% endif %}
+</div>
+<div>
+{% if success %}
+{{ success }}
+{% endif %}
+</div>
+</body>
+</html>

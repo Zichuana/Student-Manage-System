@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>专业成绩汇总</title>
+    <style>
+        body {
+            background: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            padding-top: 30px;
+        }
+
+        label, input {
+            font-size: 20px;
+            /* border-top: 20px;             padding-top: 20px;内边距*/
+            margin-top: 15px; /*外边距*/
+            width: 180px; /*输入框长度*/
+        }
+
+        button { /*控制按钮位置大小及间距*/
+            font-size: 18px;
+            margin-left: 50px;
+            margin-right: -20px;
+            /*border-radius: 10px;*/
+            color: black;
+        }
+
+        div {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>根据专业名称查询该专业学生各科成绩</h1><br>
+<form action="/grademajor/" method="post">
+    {% csrf_token %}
+    <label>专业名称:</label>
+    <input type="text" name="major" placeholder="请输入专业名称">
+    <button type="submit" value="submit">确定</button>
+</form>
+<br>
+<a href="/selgrade">
+    <button>返回</button>
+</a>
+<div style="color: red"><br>
+    {% if err %}
+        {{ err }}
+    {% endif %}
+</div>
+<div>
+    <h1>{{ major }}成绩一览</h1>
+    <table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+        <tr>
+            <th>学号</th>
+            <th>学生姓名</th>
+            <th>课程编号</th>
+            <th>课程名称</th>
+            <th>课程学分</th>
+            <th>分数</th>
+        </tr>
+        {% for s in info %}
+            <tr>
+                <td> {{ s.id }}  </td>
+                <td> {{ s.stuname }}  </td>
+                <td> {{ s.cno }}  </td>
+                <td> {{ s.cname }}  </td>
+                <td> {{ s.ccredit }} </td>
+                <td> {{ s.grade }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <h1>{{ major }}绩点排行</h1>
+    <table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+        <tr>
+            <th>学号</th>
+            <th>学生姓名</th>
+            <th>绩点</th>
+            <th>修课门数</th>
+            <th>通过门数</th>
+            <th>名次</th>
+        </tr>
+        {% for s in point %}
+            <tr>
+                <td> {{ s.id }}  </td>
+                <td> {{ s.stuname }}  </td>
+                <td> {{ s.point }} </td>
+                <td> {{ s.xcount }} </td>
+                <td> {{ s.pass }} </td>
+                <td> {{ s.rank }} </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

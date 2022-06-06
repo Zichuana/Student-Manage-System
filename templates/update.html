@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>更新学生信息</title>
+   <style>
+   body{
+       background: white;
+       text-align: center;
+  }
+   h1{
+       font-size: 30px;
+       padding-top: 30px;
+  }
+   label,input{
+       font-size: 20px;
+      /* border-top: 20px;             padding-top: 20px;内边距*/
+       margin-top: 15px;/*外边距*/
+       width: 180px;   /*输入框长度*/
+  }
+   button{         /*控制按钮位置大小及间距*/
+       font-size: 25px;
+       margin-left: 40px;
+       margin-right: -30px;
+       /*border-radius: 10px;*/
+       color: black;
+       margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<h1>请根据学生学号进行修改学生信息操作</h1>
+<form id="StuInfo" action="/update/"method="post">
+  {% csrf_token %}
+   <label>学号:</label>
+   <input name='id' placeholder="请输入学生学号"><br>
+   <label>姓名:</label>
+   <input name="stuname" placeholder="请输入学生姓名"><br>
+   <label>电话:</label>
+   <input name="stuphone" placeholder="请输入学生电话"><br>
+   <label>地址:</label>
+   <input name="stuaddress" placeholder="请输入学生地址"><br>
+   <label>院系:</label>
+   <input name="stucollege" placeholder="请输入学生院系"><br>
+   <label>专业:</label>
+   <input name="stumajor" placeholder="请输入学生专业"><br>
+</form>
+<p style="font-size: 25px">
+{% if success %}
+{{ success }}
+{% endif %}
+</p>
+<p style="font-size: 25px; color: red">
+{% if err %}
+{{ err }}
+{% endif %}
+</p>
+<a href="/bottom">
+   <button type="submit" style="font-size: 20px">返回</button>
+</a>
+<button form="StuInfo" type="submit" style="font-size: 20px">确定</button>
+</body>
+</html>

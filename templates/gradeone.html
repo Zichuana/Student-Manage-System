@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查看单个学生成绩</title>
+    <style>
+        body {
+            background: white;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 30px;
+            padding-top: 30px;
+        }
+
+        label, input {
+            font-size: 20px;
+            /* border-top: 20px;             padding-top: 20px;内边距*/
+            margin-top: 15px; /*外边距*/
+            width: 180px; /*输入框长度*/
+        }
+
+        button { /*控制按钮位置大小及间距*/
+            font-size: 18px;
+            margin-left: 50px;
+            margin-right: -20px;
+            /*border-radius: 10px;*/
+            color: black;
+        }
+
+        div {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>根据学生学号查询该学生所有科目成绩</h1><br>
+<form action="/gradeone/" method="post">
+    {% csrf_token %}
+    <label>学生学号:</label>
+    <input type="text" name="id" placeholder="请输入学号">
+    <button type="submit" value="submit">确定</button>
+</form>
+<br>
+<a href="/selgrade">
+    <button>返回</button>
+</a>
+<div style="color: red"><br>
+    {% if err %}
+        {{ err }}
+    {% endif %}
+</div>
+<div>
+    <h1>{{ name }}成绩一览</h1>
+    <p>{{ stumajor }}</p>
+    <table border="1" align="center" style="border-collapse: collapse; width: 1000px">
+        <tr>
+            <th>课程编号</th>
+            <th>课程名</th>
+            <th>课程学分</th>
+            <th>分数</th>
+        </tr>
+        {% for s in info %}
+            <tr>
+                <td> {{ s.cno }}  </td>
+                <td> {{ s.cname }}  </td>
+                <td> {{ s.ccredit }}  </td>
+                <td> {{ s.grade }}  </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>{{ point }}</p>
+</div>
+</body>
+</html>
